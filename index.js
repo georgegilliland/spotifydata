@@ -19,7 +19,7 @@ const options = { useNewUrlParser: true, useUnifiedTopology: true };
 
 mongoose
     .connect(uri, options)
-    .then(() => app.listen(4000, console.log("Server is running")))
+    .then(() => app.listen({ port: process.env.PORT || 4000 }, console.log("Server is running")))
     .catch(error => {
         throw error
     });
