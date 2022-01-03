@@ -17,6 +17,10 @@ module.exports = buildSchema(`
         image: Image!
     }
 
+    type Deleted {
+        deleted: Boolean!
+    }
+
     input ImageInput {
         height: Int!
         width: Int!
@@ -37,6 +41,7 @@ module.exports = buildSchema(`
 
     type Mutation {
         createArtist(input: ArtistInput): Artist
+        deleteAllArtists: Deleted
     }
 
     schema {

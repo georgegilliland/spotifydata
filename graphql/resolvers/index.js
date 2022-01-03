@@ -25,10 +25,19 @@ module.exports = {
         genres,
         image
       })
-      const newArtist = await artist.save()
+      const newArtist = await artist.save();
       return { ...newArtist._doc, _id: newArtist.id }
     } catch (error) {
       throw error
     }
   },
+
+  deleteAllArtists: async args => {
+    try {
+      await Artist.deleteMany({});
+      return { deleted: true }
+    } catch (error) {
+      throw error
+    }
+  }
 }
