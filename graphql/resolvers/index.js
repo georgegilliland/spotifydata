@@ -39,5 +39,15 @@ module.exports = {
     } catch (error) {
       throw error
     }
+  },
+
+  deleteArtist: async args => {
+    try {
+      const { id } = args.input
+      await Artist.deleteOne({id});
+      return { deleted: true }
+    } catch (error) {
+      throw error
+    }
   }
 }
