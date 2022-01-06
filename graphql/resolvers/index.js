@@ -15,20 +15,39 @@ module.exports = {
     }
   },
 
-  createArtist: async args => {
+  upsertArtist: async args => {
     try {
-      const { id, name, link, genres, image } = args.input
-      const artist = new Artist({
+      const { id, name, link, genres, image } = args.input;
+      const query = { 'id': id };
+      const artist = {
         id,
         name,
         link,
         genres,
         image
-      })
-      const newArtist = await artist.save();
-      return { ...newArtist._doc, _id: newArtist.id }
+      };
+
+      const result = await Artist.findOneAndUpdate(query, artist, { upsert: true, new: true });
+      return result;
+
     } catch (error) {
-      throw error
+      throw error;
+    }
+  },
+
+  updateArtist: async args => {
+    try {
+      const input = args.input;
+      const query = { 'id': input.id };
+
+      const result = await Artist.findOneAndUpdate(query, input, { new: true });
+
+      if (!result) throw new Error('error')
+
+      return result
+
+    } catch (error) {
+      throw error;
     }
   },
 

@@ -39,14 +39,23 @@ module.exports = buildSchema(`
         id: String!
     }
 
+    input UpdateArtistInput {
+        id: String!
+        name: String
+        link: String
+        genres: [String]
+        image: ImageInput
+    } 
+
     type Query {
         artists: [Artist!]!
     }
 
     type Mutation {
-        createArtist(input: ArtistInput): Artist
+        upsertArtist(input: ArtistInput): Artist
         deleteAllArtists: Deleted
         deleteArtist(input: DeleteArtistInput): Deleted
+        updateArtist(input: UpdateArtistInput): Artist
     }
 
     schema {
