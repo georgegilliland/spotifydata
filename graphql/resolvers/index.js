@@ -42,7 +42,7 @@ module.exports = {
 
       const result = await Artist.findOneAndUpdate(query, input, { new: true });
 
-      if (!result) throw new Error('error')
+      if (!result) throw new Error('Cannot update artist, it does not exist in db')
 
       return result
 
