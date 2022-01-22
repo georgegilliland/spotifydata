@@ -21,6 +21,14 @@ module.exports = buildSchema(`
         deleted: Boolean!
     }
 
+    type TokenSuccess {
+        success: Boolean!
+    }
+
+    type RefreshTokenSuccess {
+        refreshToken: String!
+    }
+
     input ImageInput {
         height: Int!
         width: Int!
@@ -47,8 +55,14 @@ module.exports = buildSchema(`
         image: ImageInput
     } 
 
+    input CreateSpotifyAccessTokenInput {
+        token: String!
+        name: String
+    }
+
     type Query {
         artists: [Artist!]!
+        getRefreshToken: RefreshTokenSuccess
     }
 
     type Mutation {
@@ -56,6 +70,7 @@ module.exports = buildSchema(`
         deleteAllArtists: Deleted
         deleteArtist(input: DeleteArtistInput): Deleted
         updateArtist(input: UpdateArtistInput): Artist
+        createSpotifyAccessToken(input: CreateSpotifyAccessTokenInput): TokenSuccess
     }
 
     schema {
