@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-require('dotenv').config();
-const uri = process.env.MONGODB_URI;
+const uri = 'mongodb+srv://georgegilliland:LU7227bb@george-cluster.jjfzz.mongodb.net/Spotify?retryWrites=true&w=majority';
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 
 let isConnected;
