@@ -9,6 +9,7 @@ const start = async () => {
     console.log('Connected to database');
     
     await app.listen(process.env.PORT || 4000);
+    console.log(process.env.PORT)
     console.log(`🚀  GraphQL server running at port: ${process.env.PORT || 4000 }`);
   } catch {
     console.log('Not able to run GraphQL server');
