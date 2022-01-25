@@ -5,7 +5,7 @@ const artistMutations = {
     if (req.headers.authorization !== process.env.KEY)
       throw new Error("Authentication error");
     try {
-      const { id, name, link, genres, image } = args.input;
+      const { id, name, link, genres, image, popularity } = args.input;
       const query = { id: id };
       const artist = {
         id,
@@ -13,6 +13,7 @@ const artistMutations = {
         link,
         genres,
         image,
+        popularity
       };
 
       const result = await Artist.findOneAndUpdate(query, artist, {

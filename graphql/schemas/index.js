@@ -14,6 +14,7 @@ module.exports = buildSchema(`
         name: String!
         link: String!
         genres: [String]!
+        popularity: Int!
         image: Image!
     }
 
@@ -40,6 +41,7 @@ module.exports = buildSchema(`
         name: String!
         link: String!
         genres: [String]!
+        popularity: Int!
         image: ImageInput!
     }   
     
@@ -52,6 +54,7 @@ module.exports = buildSchema(`
         name: String
         link: String
         genres: [String]
+        popularity: Int
         image: ImageInput
     } 
 
