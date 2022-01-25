@@ -20,7 +20,7 @@ const artistSchema = new Schema({
         required: true,
     },
     popularity: {
-        type: Int16Array,
+        type: Number,
         required: true
     },
     image: {
