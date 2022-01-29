@@ -1,9 +1,9 @@
 const Artist = require("../../../db/models/artist");
-const process = require('dotenv').config();
+const NODE_ENV = require('../../../config');
 
 const artistMutations = {
   upsertArtist: async (args, req) => {
-    if (req.headers.authorization !== (process.env.AUTHKEYJABRONI || process.env.KEY))
+    if (req.headers.authorization !== (NODE_ENV.AUTHKEYJABRONI))
       throw new Error("Authentication error");
     try {
       const { id, name, link, genres, image, popularity } = args.input;
@@ -28,7 +28,7 @@ const artistMutations = {
   },
 
   updateArtist: async (args, req) => {
-    if (req.headers.authorization !== (process.env.AUTHKEYJABRONI || process.env.KEY))
+    if (req.headers.authorization !== (NODE_ENV.AUTHKEYJABRONI))
       throw new Error("Authentication error");
     try {
       const input = args.input;
@@ -46,7 +46,7 @@ const artistMutations = {
   },
 
   deleteAllArtists: async (args, req) => {
-    if (req.headers.authorization !== (process.env.AUTHKEYJABRONI || process.env.KEY))
+    if (req.headers.authorization !== (NODE_ENV.AUTHKEYJABRONI))
       throw new Error("Authentication error");
     try {
       await Artist.deleteMany({});
@@ -57,7 +57,7 @@ const artistMutations = {
   },
 
   deleteArtist: async (args, req) => {
-    if (req.headers.authorization !== (process.env.AUTHKEYJABRONI || process.env.KEY))
+    if (req.headers.authorization !== (NODE_ENV.AUTHKEYJABRONI))
       throw new Error("Authentication error");
     try {
       const { id } = args.input;

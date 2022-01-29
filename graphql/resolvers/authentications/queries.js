@@ -1,6 +1,6 @@
 const axios = require("axios");
 const { formUrlEncoded } = require("../../utils/utils");
-const process = require('dotenv').config();
+const NODE_ENV = require('../../../config');
 
 const Authentication = require("../../../db/models/authentication");
 
@@ -8,13 +8,13 @@ const authenticationQueries = {
   getRefreshToken: async (args, req) => {
     if (
       req.headers.authorization !==
-      (process.env.AUTHKEYJABRONI || process.env.KEY)
+      (NODE_ENV.AUTHKEYJABRONI)
     )
       throw new Error("Authentication error");
     const authenticationsFetched = await Authentication.find();
     const refreshToken = authenticationsFetched[0].refresh_token;
     const encoded = Buffer.from(
-      proccess.env.SPOTIFYCLIENTSECRETANDKEY || process.env.CLIENTKEYANDSECRET
+      NODE_ENV.SPOTIFYCLIENTSECRETANDKEY
     ).toString("base64");
     const formEncodedData = formUrlEncoded({
       refresh_token: refreshToken,

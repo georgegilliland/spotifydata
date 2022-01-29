@@ -1,11 +1,11 @@
 const Artist = require("../../../db/models/artist");
-const process = require('dotenv').config();
+const NODE_ENV = require('../../../config');
 
 const artistQueries = {
   artists: async (args, req) => {
     if (
       req.headers.authorization !==
-      (process.env.AUTHKEYJABRONI || process.env.KEY)
+      (NODE_ENV.AUTHKEYJABRONI)
     )
       throw new Error("Authentication error");
     try {
