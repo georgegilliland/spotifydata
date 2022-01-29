@@ -1,4 +1,5 @@
 const Artist = require("../../../db/models/artist");
+const process = require('dotenv').config();
 
 const artistQueries = {
   artists: async (args, req) => {

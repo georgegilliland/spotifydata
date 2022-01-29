@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { formUrlEncoded } = require("../../utils/utils");
+const process = require('dotenv').config();
 
 const Authentication = require("../../../db/models/authentication");
 
