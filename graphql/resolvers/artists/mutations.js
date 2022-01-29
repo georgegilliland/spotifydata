@@ -2,7 +2,7 @@ const Artist = require("../../../db/models/artist");
 
 const artistMutations = {
   upsertArtist: async (args, req) => {
-    if (req.headers.authorization !== process.env.KEY)
+    if (req.headers.authorization !== (process.env.AUTHKEYJABRONI || process.env.KEY))
       throw new Error("Authentication error");
     try {
       const { id, name, link, genres, image, popularity } = args.input;
@@ -27,7 +27,7 @@ const artistMutations = {
   },
 
   updateArtist: async (args, req) => {
-    if (req.headers.authorization !== process.env.KEY)
+    if (req.headers.authorization !== (process.env.AUTHKEYJABRONI || process.env.KEY))
       throw new Error("Authentication error");
     try {
       const input = args.input;
@@ -45,7 +45,7 @@ const artistMutations = {
   },
 
   deleteAllArtists: async (args, req) => {
-    if (req.headers.authorization !== process.env.KEY)
+    if (req.headers.authorization !== (process.env.AUTHKEYJABRONI || process.env.KEY))
       throw new Error("Authentication error");
     try {
       await Artist.deleteMany({});
@@ -56,7 +56,7 @@ const artistMutations = {
   },
 
   deleteArtist: async (args, req) => {
-    if (req.headers.authorization !== process.env.KEY)
+    if (req.headers.authorization !== (process.env.AUTHKEYJABRONI || process.env.KEY))
       throw new Error("Authentication error");
     try {
       const { id } = args.input;

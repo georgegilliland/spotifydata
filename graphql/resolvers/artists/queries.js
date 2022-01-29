@@ -2,7 +2,10 @@ const Artist = require("../../../db/models/artist");
 
 const artistQueries = {
   artists: async (args, req) => {
-    if (req.headers.authorization !== process.env.KEY)
+    if (
+      req.headers.authorization !==
+      (process.env.AUTHKEYJABRONI || process.env.KEY)
+    )
       throw new Error("Authentication error");
     try {
       const artistsFetched = await Artist.find();

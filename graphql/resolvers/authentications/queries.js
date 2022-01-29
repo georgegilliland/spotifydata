@@ -5,13 +5,16 @@ const Authentication = require("../../../db/models/authentication");
 
 const authenticationQueries = {
   getRefreshToken: async (args, req) => {
-    if (req.headers.authorization !== process.env.KEY)
+    if (
+      req.headers.authorization !==
+      (process.env.AUTHKEYJABRONI || process.env.KEY)
+    )
       throw new Error("Authentication error");
     const authenticationsFetched = await Authentication.find();
     const refreshToken = authenticationsFetched[0].refresh_token;
-    const encoded = Buffer.from(process.env.CLIENTKEYANDSECRET).toString(
-      "base64"
-    );
+    const encoded = Buffer.from(
+      proccess.env.SPOTIFYCLIENTSECRETANDKEY || process.env.CLIENTKEYANDSECRET
+    ).toString("base64");
     const formEncodedData = formUrlEncoded({
       refresh_token: refreshToken,
       grant_type: "refresh_token",
