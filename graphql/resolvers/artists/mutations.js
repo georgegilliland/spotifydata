@@ -2,6 +2,17 @@ const Artist = require("../../../db/models/artist");
 const NODE_ENV = require('../../../config');
 
 const artistMutations = {
+  upsertArtists: async (args, req) => {
+    if (req.headers.authorization !== (NODE_ENV.AUTHKEYJABRONI))
+    throw new Error("Authentication error");
+    try {
+      console.log(args.input)
+      return { success: true };
+    } catch (error) {
+      throw error;
+    }
+  },
+
   upsertArtist: async (args, req) => {
     if (req.headers.authorization !== (NODE_ENV.AUTHKEYJABRONI))
       throw new Error("Authentication error");

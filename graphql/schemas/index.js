@@ -30,6 +30,10 @@ module.exports = buildSchema(`
         refreshToken: String!
     }
 
+    type UpsertArtistsSuccess {
+        success: Boolean!
+    }
+
     input ImageInput {
         height: Int!
         width: Int!
@@ -58,6 +62,10 @@ module.exports = buildSchema(`
         image: ImageInput
     } 
 
+    input UpsertArtistsInput {
+        artists: [ArtistInput]!
+    }
+
     input CreateSpotifyAccessTokenInput {
         token: String!
         name: String
@@ -70,6 +78,7 @@ module.exports = buildSchema(`
 
     type Mutation {
         upsertArtist(input: ArtistInput): Artist
+        upsertArtists(input: UpsertArtistsInput): UpsertArtistsSuccess
         deleteAllArtists: Deleted
         deleteArtist(input: DeleteArtistInput): Deleted
         updateArtist(input: UpdateArtistInput): Artist
