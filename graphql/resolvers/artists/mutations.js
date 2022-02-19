@@ -6,7 +6,23 @@ const artistMutations = {
     if (req.headers.authorization !== (NODE_ENV.AUTHKEYJABRONI))
     throw new Error("Authentication error");
     try {
-      console.log(args.input)
+      
+      const { artists } = args.input;
+      const mappedArtists = artists.map(a => {
+        const { id, name, link, genres, image, popularity } = a;
+        return {
+          id, name, link, genres, image, popularity
+        }
+      });
+
+      await Artist.bulkWrite(mappedArtists.map(doc => ({
+        updateOne: {
+          filter: { id: doc.id },
+          update: doc,
+          upsert: true
+        }
+      })));
+
       return { success: true };
     } catch (error) {
       throw error;
