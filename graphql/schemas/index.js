@@ -71,8 +71,12 @@ module.exports = buildSchema(`
         name: String
     }
 
+    input QueryArtistsInput {
+        popularity: Int
+    }
+
     type Query {
-        artists: [Artist!]!
+        artists(input: QueryArtistsInput): [Artist!]!
         getRefreshToken: RefreshTokenSuccess
     }
 

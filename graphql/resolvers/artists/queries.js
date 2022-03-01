@@ -9,7 +9,8 @@ const artistQueries = {
     )
       throw new Error("Authentication error");
     try {
-      const artistsFetched = await Artist.find();
+      const input = args.input.popularity ? { popularity: { $gte: args.input.popularity } } : {};
+      const artistsFetched = await Artist.find(input);
       return artistsFetched.map((artist) => {
         return {
           ...artist._doc,
