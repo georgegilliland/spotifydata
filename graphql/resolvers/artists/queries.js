@@ -9,7 +9,13 @@ const artistQueries = {
     )
       throw new Error("Authentication error");
     try {
-      const input = args.input.popularity ? { popularity: { $gte: args.input.popularity } } : {};
+      const input = {};
+
+      Object.keys(args.input).forEach((key) =>  {
+        input[key] = { $gte: args.input[key] };
+      });
+
+      //const input = args.input.popularity ? { popularity: { $gte: args.input.popularity } } : {};
       const artistsFetched = await Artist.find(input);
       return artistsFetched.map((artist) => {
         return {

@@ -73,6 +73,7 @@ module.exports = buildSchema(`
 
     input QueryArtistsInput {
         popularity: Int
+        updatedAt: String
     }
 
     type Query {
